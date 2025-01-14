@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XWare Launch Countdown</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        #countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .preview-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .preview-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px; /* Even more space between images */
+            margin-top: 30px;
+        }
+        .image-container img {
+            width: 600px; /* Increased image size */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 25px 10px rgba(255, 255, 255, 0.8); /* Stronger white glow effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>XWare Launch Countdown</h1>
+        <p>Counting down to January 16th, 4:00 PM EST</p>
+        <div id="countdown">Loading...</div>
+    </div>
+
+    <!-- Preview section -->
+    <div class="preview-section">
+        <h2>Preview</h2>
+        <div class="image-container">
+            <img src="ss1.png" alt="Screenshot 1">
+            <img src="ss2.png" alt="Screenshot 2">
+            <img src="ss3.png" alt="Screenshot 3">
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date("2025-01-16T16:00:00-05:00"); // EST timezone
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').textContent = "The wait is over! XWare has launched!";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').textContent = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
